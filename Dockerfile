@@ -1,5 +1,5 @@
 # 第一个阶段用于根据架构复制文件
-FROM --platform=$TARGETPLATFORM alpine:3.19 AS builder
+FROM alpine:3.19 AS builder
 
 # 设置构建参数
 ARG TARGETPLATFORM
@@ -27,7 +27,7 @@ RUN ls -la && \
     fi
 
 # 第二个阶段：运行阶段
-FROM --platform=$TARGETPLATFORM alpine:3.19
+FROM alpine:3.19
 
 # 复制构建阶段的文件到运行阶段
 COPY --from=builder /cfnat ./cfnat
